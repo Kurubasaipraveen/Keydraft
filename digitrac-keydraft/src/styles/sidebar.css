@@ -1,0 +1,128 @@
+
+.sidebar-container {
+    display: flex;
+    transition: all 0.3s ease;
+    width: 100%;
+   
+  }
+  .dashboard-container {
+    transition: margin-left 0.3s ease;
+    margin-left: 0px;
+  }
+  .sidebar-branch{
+    background-color: cornflowerblue;
+  }
+  
+  .dashboard-container.sidebar-closed {
+    margin-left: 300px;
+  }
+  
+  .dashboard-container.sidebar-closed {
+    margin-left: 300px; 
+  }
+  
+  .sidebar-dash {
+    transition: width 0.3s ease;
+    width: 300px; 
+  }
+  
+  .sidebar-dash.sidebar-closed {
+    width: 0px; 
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color:transparent;
+    color: black;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease;
+    z-index: 1000;
+    opacity: 1;
+  }
+  
+  /* Sidebar when collapsed */
+  .sidebar.closed {
+    width: 60px; 
+    opacity: 0.8; 
+  }
+  
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .sidebar-icon {
+    font-size: 30px;
+    margin-right: 10px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  .sidebar-item-name {
+    font-size: 16px;
+    display: inline-block;
+    transition: opacity 0.3s ease;
+    opacity: 0; 
+  }
+  .sidebar.open .sidebar-item-name {
+    opacity: 1;
+  }
+  .sidebar-item:hover {
+    background-color: #3a4b59;
+  }
+  
+  .sidebar-toggle {
+    position: absolute;
+    top: 10px;
+    right: -30px; 
+    background-color: #2f3c48;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  .sidebar-toggle i {
+    color: white;
+    font-size: 20px;
+  }
+  
+  .image-sidebar {
+    max-width: 200px;
+    transition: opacity 0.3s ease, max-width 0.3s ease;
+  }
+  
+  .sidebar.closed .image-sidebar {
+    max-width: 0;
+    opacity: 0;
+  }
+  .sidebar.closed .sidebar-icon {
+    font-size: 24px;
+  }
+  
+  .main-content {
+    margin-left: 250px; 
+    transition: margin-left 0.3s ease;
+  }
+  
+  .main-content.sidebar-closed {
+    margin-left: 0px; 
+  }
+  
+  .dashboard {
+    padding: 20px;
+  }
+  
+  .image-default {
+    height: 50px;
+  }
+  

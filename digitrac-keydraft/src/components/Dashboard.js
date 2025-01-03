@@ -3,6 +3,7 @@ import "../styles/Dash.css";
 import { exportToExcel } from "../utils/excelHandler";
 import './sidebar';
 import Sidebar from "./sidebar";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [rows, setRows] = useState([
@@ -41,7 +42,7 @@ const Dashboard = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [viewMode, setViewMode] = useState("list"); 
   const [isFullScreen, setIsFullScreen] = useState(false);
-
+  const [showLogout, setShowLogout] = useState(false);
   const [editingRow, setEditingRow] = useState(null); 
   const [editedData, setEditedData] = useState({});
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -175,6 +176,13 @@ const Dashboard = () => {
     }
     setIsFullScreen(!isFullScreen);
   };
+  const toggleLogout = () => {
+    setShowLogout((prev) => !prev);
+  };
+  const navigate=useNavigate()
+  const logoutBtn=()=>{
+    navigate('/')
+  }
 
   const totalPages = Math.ceil(rows.length / rowsPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
@@ -182,9 +190,23 @@ const Dashboard = () => {
   return (
     <div className="first-container">
       <div className="header-image">
-        <img src="http://digitrac.keydraft.com/images/avatars/1.png" className="image-logo"/>
-        <span>Praveen</span>
-      </div>
+          <img
+            src="http://digitrac.keydraft.com/images/avatars/1.png"
+            className="image-logo"
+            alt="User Avatar"
+            onClick={toggleLogout}
+            style={{ cursor: "pointer" }}
+          />
+          <span>Praveen</span>
+          {showLogout && (
+            <button
+              className="logout-button"
+              onClick={logoutBtn}
+            >
+              Logout
+            </button>
+          )}
+        </div>
         <div className="sidebar-dash">
            <Sidebar />
         </div>
@@ -416,9 +438,21 @@ const Dashboard = () => {
 
         {/* Right Side */}
         <div className="toolbar-right">
-          <button title="Import" className="action-button">
-            <i className="bi bi-arrow-bar-up" type='file'></i>
-          </button>
+        <div>
+            <label htmlFor="fileInput" className="action-button">
+              <i className="bi bi-arrow-bar-up"></i> 
+            </label>
+            <input
+              id="fileInput"
+              type="file"
+              style={{ display: "none" }}
+              onChange={(e) => {
+                if (e.target.files.length > 0) {
+                  console.log("File selected:", e.target.files[0].name);
+                }
+              }}
+            />
+          </div>
           <button
             onClick={() => exportToExcel(rows, "branches.xlsx", "Branches")}
             className="excel-button"
